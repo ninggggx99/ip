@@ -1,12 +1,14 @@
-import java.lang.reflect.Array;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Duke {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String command;
-        String commandArr [] = new String[100];
+        String[] commandArr  = new String[100];
         ArrayList<Task> tasks = new ArrayList<Task>();
         int counter = 0;
+
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -33,8 +35,7 @@ public class Duke {
                 default :
                     if (command.substring(0,4).equalsIgnoreCase("done")){
                         doneCommand(commandArr, command,tasks);
-                    }
-                    else{
+                    }else{
                         addCommand(command,commandArr,counter);
                         counter++;
                         tasks.add(new Task(command));
@@ -44,8 +45,7 @@ public class Duke {
             }
 
             command = sc.nextLine();
-        }
-        while (!command.equalsIgnoreCase("bye"));
+        } while (!command.equalsIgnoreCase("bye"));
 
         byeCommand();
 
@@ -58,7 +58,7 @@ public class Duke {
      * @param commandArr
      * @param counter
      */
-    public static void addCommand (String command, String commandArr[], int counter){
+    public static void addCommand (String command, String[] commandArr, int counter){
        commandArr[counter] = command;
        System.out.println("added: " + command);
        System.out.println("____________________________________________________________");
@@ -70,7 +70,7 @@ public class Duke {
      * @param command
      * @param tasks
      */
-    public static void doneCommand (String commandArr[], String command, ArrayList<Task> tasks){
+    public static void doneCommand (String[] commandArr, String command, ArrayList<Task> tasks){
 
         System.out.println("Nice! I've marked this task as done: " );
         int index = Integer.parseInt(command.replaceAll("\\D+",""));
@@ -83,7 +83,7 @@ public class Duke {
      * @param commandArr
      * @param counter
      */
-    public static void listCommand (String commandArr [], int counter, ArrayList<Task> tasks){
+    public static void listCommand (String[] commandArr , int counter, ArrayList<Task> tasks){
         System.out.println("Here are the tasks in your list:");
         for(int i = 0 ; i < counter ; i++){
             System.out.println( (i+1) + ". " + "["+ (tasks).get(i).getStatusIcon() +"] "+commandArr[i]);
