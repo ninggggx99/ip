@@ -3,7 +3,8 @@ public class Duke {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String command;
-
+        String commandArr [] = new String[100];
+        int counter = 0;
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -22,12 +23,14 @@ public class Duke {
             System.out.println("____________________________________________________________");
             switch (command){
                 case "list" :
-                    listCommand();
+                    listCommand(commandArr,counter);
                     break;
                 case "blah" :
                     blahCommand();
                     break;
                 default :
+                    addCommand(command,commandArr,counter);
+                    counter++;
                     break;
             }
 
@@ -39,9 +42,15 @@ public class Duke {
 
 
     }
-
-    public static void listCommand (){
-        System.out.println("list");
+    public static void addCommand (String command, String commandArr[], int counter){
+       commandArr[counter] = command;
+       System.out.println("added: " + command);
+       System.out.println("____________________________________________________________");
+    }
+    public static void listCommand (String commandArr [], int counter){
+        for(int i = 0 ; i < counter ; i++){
+            System.out.println( (i+1) + ". " + commandArr[i]);
+        }
         System.out.println("____________________________________________________________");
     }
     public static void blahCommand (){
