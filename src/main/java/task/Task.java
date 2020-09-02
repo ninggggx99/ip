@@ -1,3 +1,5 @@
+package task;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -13,7 +15,7 @@ public class Task {
 
     /**
      * Retrieve task's status icon
-     * @return icon
+     * @return status icon
      */
     public String getStatusIcon(){
         return (isDone? "\u2713" : "\u2718");
