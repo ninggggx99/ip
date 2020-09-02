@@ -1,5 +1,8 @@
 package command;
 
+/**
+ * Abstract class for commands
+ */
 public abstract class Command {
     protected boolean isExit;
     protected String command;

@@ -5,6 +5,9 @@ import task.Task;
 
 import java.util.ArrayList;
 
+/**
+ * Command to add event task
+ */
 public class EventsCommand extends Command{
     protected String command;
     protected ArrayList<Task> tasks;

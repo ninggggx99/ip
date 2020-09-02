@@ -1,5 +1,8 @@
 package task;
 
+/**
+ * Class for task
+ */
 public class Task {
     protected String description;
     protected boolean isDone;

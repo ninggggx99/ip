@@ -5,6 +5,9 @@ import task.Todo;
 
 import java.util.ArrayList;
 
+/**
+ * Command to add todo task
+ */
 public class ToDoCommand extends Command{
     protected String command;
     protected ArrayList<Task> tasks;

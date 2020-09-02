@@ -5,6 +5,9 @@ import task.Task;
 
 import java.util.ArrayList;
 
+/**
+ * Command to add deadline task
+ */
 public class DeadlineCommand extends Command{
     protected String command;
     protected ArrayList<Task> tasks;

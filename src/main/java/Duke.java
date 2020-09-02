@@ -9,13 +9,21 @@ public class Duke {
         Scanner sc = new Scanner(System.in);
         String command;
         ArrayList<Task> tasks = new ArrayList<Task>();
+
         welcomeMessage();
 
         command = sc.nextLine();
 
+        runCommand(sc, command, tasks);
+
+
+    }
+
+    private static void runCommand(Scanner sc, String command, ArrayList<Task> tasks) {
         do{
             System.out.println("____________________________________________________________");
             String commandSplit []= command.split(" ",2);
+
             if (command.equalsIgnoreCase("bye")){
                 new ByeCommand().printBye();
                 break;
@@ -29,13 +37,13 @@ public class Duke {
                         new ToDoCommand(command, tasks).addToDo();
                         break;
                     case "deadline":
-                        new DeadlineCommand(command,tasks).addDeadline();
+                        new DeadlineCommand(command, tasks).addDeadline();
                         break;
                     case "event":
-                        new EventsCommand(command,tasks).addEvents();
+                        new EventsCommand(command, tasks).addEvents();
                         break;
                     case "done":
-                        new DoneCommand(command,tasks).done();
+                        new DoneCommand(command, tasks).done();
                         break;
                     default:
                         new ErrorCommand().errorMessage();
@@ -48,8 +56,6 @@ public class Duke {
         while (!command.equalsIgnoreCase("bye"));
 
         new ByeCommand().printBye();
-
-
     }
 
     /**

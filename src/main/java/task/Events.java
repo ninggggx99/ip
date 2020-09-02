@@ -1,5 +1,8 @@
 package task;
 
+/**
+ * Class for events
+ */
 public class Events extends Task{
     public String dateToFrom;
 

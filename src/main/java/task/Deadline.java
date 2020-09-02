@@ -1,5 +1,8 @@
 package task;
 
+/**
+ * Class for deadline
+ */
 public class Deadline extends Task {
     public String by;
 

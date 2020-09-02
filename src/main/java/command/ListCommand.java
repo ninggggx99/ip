@@ -3,8 +3,9 @@ package command;
 import task.Task;
 
 import java.util.ArrayList;
+
 /**
- * Command to list task
+ * Command to display task
  */
 public class ListCommand extends Command{
 

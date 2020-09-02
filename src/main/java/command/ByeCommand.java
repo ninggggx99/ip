@@ -1,5 +1,8 @@
 package command;
 
+/**
+ * Command to end Duke
+ */
 public class ByeCommand extends Command{
     /**
      * Constructor for bye
