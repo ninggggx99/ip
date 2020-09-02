@@ -1,3 +1,10 @@
+import command.ListCommand;
+import task.Deadline;
+import task.Events;
+import task.Task;
+import command.ByeCommand;
+import task.Todo;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -5,9 +12,53 @@ public class Duke {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String command;
-        String commandArr [] = new String[100];
         ArrayList<Task> tasks = new ArrayList<Task>();
-        int counter = 0;
+
+        welcomeMessage();
+
+        command = sc.nextLine();
+
+        do{
+            System.out.println("____________________________________________________________");
+            String commandSplit []= command.split(" ",2);
+            if (command.equalsIgnoreCase("bye")){
+                new ByeCommand().printBye();
+                break;
+            }
+            else{
+                switch (commandSplit[0]){
+                    case "list":
+                        listCommand(tasks);
+                        break;
+                    case "todo":
+                        toDoCommand(command, tasks);
+                        break;
+                    case "deadline":
+                        deadlineCommand(command,tasks);
+                        break;
+                    case "event":
+                        eventsCommand(command, tasks);
+                        break;
+                    case "done":
+                        doneCommand(command,tasks);
+                        break;
+                    default:
+                        errorCommand(command);
+                        break;
+
+
+                }
+            }
+            command = sc.nextLine();
+        }
+        while (!command.equalsIgnoreCase("bye"));
+        new ByeCommand().printBye();
+    }
+
+    /**
+     * Welcome Message
+     */
+    private static void welcomeMessage() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
@@ -18,94 +69,91 @@ public class Duke {
         System.out.println("Hello! I'm Duke ");
         System.out.println("What can I do for you?");
         System.out.println("____________________________________________________________");
-
-
-        command = sc.nextLine();
-
-        do{
-            System.out.println("____________________________________________________________");
-            switch (command){
-                case "list" :
-                    listCommand(commandArr,counter,tasks);
-                    break;
-                case "blah" :
-                    blahCommand();
-                    break;
-                default :
-                    if (command.substring(0,4).equalsIgnoreCase("done")){
-                        doneCommand(commandArr, command,tasks);
-                    }
-                    else{
-                        addCommand(command,commandArr,counter);
-                        counter++;
-                        tasks.add(new Task(command));
-                    }
-
-                    break;
-            }
-
-            command = sc.nextLine();
-        }
-        while (!command.equalsIgnoreCase("bye"));
-
-        byeCommand();
-
-
     }
 
     /**
-     * Add command for user
+     * Wrong command input
      * @param command
-     * @param commandArr
-     * @param counter
      */
-    public static void addCommand (String command, String commandArr[], int counter){
-       commandArr[counter] = command;
-       System.out.println("added: " + command);
-       System.out.println("____________________________________________________________");
+    private static void errorCommand (String command){
+
+        System.out.println("I don't understand " + command + ". Please key in again");
+        System.out.println("____________________________________________________________");
+    }
+
+    /**
+     * Add todo for user
+     * @param command
+     * @param tasks
+     */
+    private static void toDoCommand (String command, ArrayList<Task> tasks){
+        String commandSplit []  = command.split(" ",2 );
+        tasks.add(new Todo(commandSplit[1]));
+        System.out.println("Got it. I've added this task: ");
+        System.out.println("    [T][" + (tasks).get(tasks.size()-1).getStatusIcon() + "] " +commandSplit[1]) ;
+        System.out.println(" Now you have "+ tasks.size() + " tasks in the list.");
+        System.out.println("____________________________________________________________");
+    }
+
+    /**
+     * Add a task with deadline for user
+     * @param command
+     * @param tasks
+     */
+    private static void deadlineCommand (String command, ArrayList<Task> tasks){
+        String commandSplit []  = command.split(" ",2 );
+        String descDate [] = commandSplit[1].split(" /");
+        String deadlineDate [] = descDate[1].split(" ",2);
+
+        tasks.add(new Deadline(descDate[0], deadlineDate[1]));
+        System.out.println("Got it. I've added this task: ");
+        System.out.println("    "+tasks.get(tasks.size()-1).toString()) ;
+        System.out.println("Now you have "+ tasks.size() + " tasks in the list.");
+        System.out.println("____________________________________________________________");
+    }
+
+    /**
+     * Add an event for user
+     * @param command
+     * @param tasks
+     */
+    private static void eventsCommand (String command, ArrayList<Task> tasks){
+        String commandSplit []  = command.split(" ",2 );
+        String descDate [] = commandSplit[1].split(" /");
+        String deadlineDate [] = descDate[1].split(" ",2);
+
+        tasks.add(new Events(descDate[0], deadlineDate[1]));
+        System.out.println("Got it. I've added this task: ");
+        System.out.println("    " +tasks.get(tasks.size()-1).toString()) ;
+        System.out.println("Now you have "+ tasks.size() + " tasks in the list.");
+        System.out.println("____________________________________________________________");
     }
 
     /**
      * User marked the task as done
-     * @param commandArr
      * @param command
      * @param tasks
      */
-    public static void doneCommand (String commandArr[], String command, ArrayList<Task> tasks){
+    private static void doneCommand ( String command, ArrayList<Task> tasks){
 
         System.out.println("Nice! I've marked this task as done: " );
         int index = Integer.parseInt(command.replaceAll("\\D+",""));
         (tasks.get(index - 1)).markAsDone();
-        System.out.println("["+ (tasks).get(index-1).getStatusIcon() +"] " + tasks.get(index-1).getDescription());
+        System.out.println(tasks.get(index-1).toString());
         System.out.println("____________________________________________________________");
     }
+
     /**
      * Print the list of commands the user have added
-     * @param commandArr
-     * @param counter
+     * @param tasks
      */
-    public static void listCommand (String commandArr [], int counter, ArrayList<Task> tasks){
+    private static void listCommand (ArrayList<Task> tasks){
         System.out.println("Here are the tasks in your list:");
-        for(int i = 0 ; i < counter ; i++){
-            System.out.println( (i+1) + ". " + "["+ (tasks).get(i).getStatusIcon() +"] "+commandArr[i]);
+        for(int i = 0 ; i < tasks.size() ; i++){
+            System.out.println( (i+1) + ". " +" " +tasks.get(i).toString());
         }
         System.out.println("____________________________________________________________");
     }
 
-    /**
-     * Test case command
-     */
-    public static void blahCommand (){
-        System.out.println("blah");
-        System.out.println("____________________________________________________________");
-    }
 
-    /**
-     * Print when user choose to exit the program
-     */
-    public static void byeCommand (){
-        System.out.println("____________________________________________________________");
-        System.out.println("Bye. Hope to see you again soon!");
-        System.out.println("____________________________________________________________");
-    }
 }
