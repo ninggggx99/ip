@@ -1,0 +1,7 @@
+list
+todo buy groceries
+event lunch /at 20/10/2020 1200
+deadline homework /by 29/10/2020 2359
+done 1
+list
+bye
