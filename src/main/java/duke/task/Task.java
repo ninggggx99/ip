@@ -1,14 +1,14 @@
-package task;
+package duke.task;
 
 /**
- * Class for task
+ * Class for duke.task
  */
 public class Task {
     protected String description;
     protected boolean isDone;
 
     /**
-     * Constructor for task
+     * Constructor for duke.task
      *
      * @param description
      */
@@ -18,7 +18,7 @@ public class Task {
     }
 
     /**
-     * Retrieve task's status icon
+     * Retrieve duke.task's status icon
      *
      * @return status icon
      */
@@ -27,7 +27,7 @@ public class Task {
     }
 
     /**
-     * Retrieve task's description
+     * Retrieve duke.task's description
      *
      * @return description
      */
@@ -36,7 +36,7 @@ public class Task {
     }
 
     /**
-     * Setting the task's description
+     * Setting the duke.task's description
      *
      * @param description
      */
@@ -45,7 +45,7 @@ public class Task {
     }
 
     /**
-     * Set isDone to true if task is done
+     * Set isDone to true if duke.task is done
      */
     public void markAsDone() {
         this.isDone = true;

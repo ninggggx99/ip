@@ -1,22 +1,22 @@
-package command;
+package duke.command;
 
-import exception.MissingDateAndDescriptionException;
-import exception.MissingDateException;
-import exception.MissingDescriptionException;
-import task.Deadline;
-import task.Task;
+import duke.exception.MissingDateAndDescriptionException;
+import duke.exception.MissingDateException;
+import duke.exception.MissingDescriptionException;
+import duke.task.Deadline;
+import duke.task.Task;
 
 import java.util.ArrayList;
 
 /**
- * Command to add deadline task
+ * Command to add deadline duke.task
  */
 public class DeadlineCommand extends Command {
     protected String command;
     protected ArrayList<Task> tasks;
 
     /**
-     * Costructor for deadline task
+     * Costructor for deadline duke.task
      *
      * @param command
      * @param tasks
@@ -28,7 +28,7 @@ public class DeadlineCommand extends Command {
     }
 
     /**
-     * Add a task with deadline for user
+     * Add a duke.task with deadline for user
      * @param command
      * @param tasks
      * @throws MissingDescriptionException
@@ -53,7 +53,7 @@ public class DeadlineCommand extends Command {
 
         String deadlineDate[] = descDate[1].split(" ", 2);
         tasks.add(new Deadline(descDate[0], deadlineDate[1]));
-        System.out.println("Got it. I've added this task: ");
+        System.out.println("Got it. I've added this duke.task: ");
         System.out.println("    " + tasks.get(tasks.size() - 1).toString());
         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
         System.out.println("____________________________________________________________");

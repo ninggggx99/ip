@@ -1,14 +1,17 @@
-package exception;
+package duke.exception;
 
-public class EmptyListException extends DukeException {
+/**
+ * Exception that duke.task is already marked done
+ */
+public class TaskDoneException extends DukeException {
     private String errorMessage;
 
     /**
-     * Set the error message of exception
+     * Set the error message of duke.exception
      *
      * @param errorMessage
      */
-    public EmptyListException(String errorMessage) {
+    public TaskDoneException(String errorMessage) {
         this.errorMessage = errorMessage;
     }
 

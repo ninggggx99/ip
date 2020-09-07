@@ -1,20 +1,20 @@
-package command;
+package duke.command;
 
-import exception.MissingDescriptionException;
-import task.Task;
-import task.Todo;
+import duke.exception.MissingDescriptionException;
+import duke.task.Task;
+import duke.task.Todo;
 
 import java.util.ArrayList;
 
 /**
- * Command to add todo task
+ * Command to add todo duke.task
  */
 public class ToDoCommand extends Command {
     protected String command;
     protected ArrayList<Task> tasks;
 
     /**
-     * Constructor for todo task
+     * Constructor for todo duke.task
      *
      * @param command
      * @param tasks
@@ -26,7 +26,7 @@ public class ToDoCommand extends Command {
     }
 
     /**
-     * Add a todo task for user
+     * Add a todo duke.task for user
      * @param command
      * @param tasks
      * @throws MissingDescriptionException
@@ -39,7 +39,7 @@ public class ToDoCommand extends Command {
             throw new MissingDescriptionException("The description of a todo cannot be empty");
         } else {
             tasks.add(new Todo(commandSplit[1]));
-            System.out.println("Got it. I've added this task: ");
+            System.out.println("Got it. I've added this duke.task: ");
             System.out.println("    [T][" + (tasks).get(tasks.size() - 1).getStatusIcon() + "] " + commandSplit[1]);
             System.out.println(" Now you have " + tasks.size() + " tasks in the list.");
             System.out.println("____________________________________________________________");

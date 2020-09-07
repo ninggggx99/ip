@@ -1,11 +1,11 @@
-package task;
+package duke.task;
 
 /**
  * Class for Todo
  */
 public class Todo extends Task {
     /**
-     * Constructor for todo task
+     * Constructor for todo duke.task
      *
      * @param description
      */
@@ -14,7 +14,7 @@ public class Todo extends Task {
     }
 
     /**
-     * Print todo task String
+     * Print todo duke.task String
      *
      * @return print string
      */

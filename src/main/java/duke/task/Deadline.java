@@ -1,4 +1,4 @@
-package task;
+package duke.task;
 
 /**
  * Class for deadline
@@ -36,7 +36,7 @@ public class Deadline extends Task {
     }
 
     /**
-     * Print deadline task String
+     * Print deadline duke.task String
      *
      * @return print string
      */

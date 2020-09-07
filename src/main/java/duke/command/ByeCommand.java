@@ -1,11 +1,11 @@
-package command;
+package duke.command;
 
-import task.Task;
+import duke.task.Task;
 
 import java.util.ArrayList;
 
 /**
- * Command to end Duke
+ * Command to end duke.Duke
  */
 public class ByeCommand extends Command {
     /**

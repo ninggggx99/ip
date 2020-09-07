@@ -1,17 +1,17 @@
-package exception;
+package duke.exception;
 
 /**
- * Exception that task is already marked done
+ * Exception when duke.task index is not in the list
  */
-public class TaskDoneException extends DukeException {
+public class InvalidTaskIndexException extends DukeException {
     private String errorMessage;
 
     /**
-     * Set the error message of exception
+     * Set the error message of duke.exception
      *
      * @param errorMessage
      */
-    public TaskDoneException(String errorMessage) {
+    public InvalidTaskIndexException(String errorMessage) {
         this.errorMessage = errorMessage;
     }
 

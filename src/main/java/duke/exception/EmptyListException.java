@@ -1,17 +1,14 @@
-package exception;
+package duke.exception;
 
-/**
- * Exception thrown when description missing
- */
-public class MissingDescriptionException extends DukeException {
+public class EmptyListException extends DukeException {
     private String errorMessage;
 
     /**
-     * Set the error message of exception
+     * Set the error message of duke.exception
      *
      * @param errorMessage
      */
-    public MissingDescriptionException(String errorMessage) {
+    public EmptyListException(String errorMessage) {
         this.errorMessage = errorMessage;
     }
 

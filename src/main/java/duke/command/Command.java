@@ -1,7 +1,7 @@
-package command;
+package duke.command;
 
-import exception.DukeException;
-import task.Task;
+import duke.exception.DukeException;
+import duke.task.Task;
 
 import java.util.ArrayList;
 
@@ -17,7 +17,7 @@ public abstract class Command {
     /**
      * Signal exit program
      *
-     * @return true if user give exit command
+     * @return true if user give exit duke.command
      */
     public boolean isExit() {
         return isExit;
