@@ -1,8 +1,18 @@
-import command.*;
+import command.ByeCommand;
+import command.Command;
+import command.DeadlineCommand;
+import command.DoneCommand;
+import command.EventsCommand;
+import command.ListCommand;
+import command.ToDoCommand;
+
+import exception.DukeException;
+import exception.InvalidCommandException;
 import task.Task;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+
 
 public class Duke {
     public static void main(String[] args) {
@@ -10,52 +20,55 @@ public class Duke {
         String command;
         ArrayList<Task> tasks = new ArrayList<Task>();
 
+
         welcomeMessage();
 
         command = sc.nextLine();
+        boolean isExit = false;
 
-        runCommand(sc, command, tasks);
-
-
+        while (!isExit) {
+            try {
+                Command commandType = runCommand(command, tasks);
+                commandType.run(command, tasks);
+                isExit = commandType.isExit();
+            } catch (DukeException e) {
+                System.out.println(e);
+            }
+            if (isExit == false) {
+                command = sc.nextLine();
+            }
+        }
     }
 
-    private static void runCommand(Scanner sc, String command, ArrayList<Task> tasks) {
-        do{
-            System.out.println("____________________________________________________________");
-            String commandSplit []= command.split(" ",2);
+    /**
+     * check which command to run
+     * @param command
+     * @param tasks
+     * @return Command function
+     * @throws InvalidCommandException
+     */
+    private static Command runCommand(String command, ArrayList<Task> tasks) throws InvalidCommandException {
 
-            if (command.equalsIgnoreCase("bye")){
-                new ByeCommand().printBye();
-                break;
-            }
-            else{
-                switch (commandSplit[0]){
-                    case "list":
-                        new ListCommand(tasks).printList();
-                        break;
-                    case "todo":
-                        new ToDoCommand(command, tasks).addToDo();
-                        break;
-                    case "deadline":
-                        new DeadlineCommand(command, tasks).addDeadline();
-                        break;
-                    case "event":
-                        new EventsCommand(command, tasks).addEvents();
-                        break;
-                    case "done":
-                        new DoneCommand(command, tasks).done();
-                        break;
-                    default:
-                        new ErrorCommand().errorMessage();
-                        break;
-                }
-            }
+        String commandSplit[] = command.split(" ", 2);
 
-            command = sc.nextLine();
+
+        switch (commandSplit[0]) {
+            case "list":
+                return new ListCommand(command, tasks);
+            case "todo":
+                return new ToDoCommand(command, tasks);
+            case "deadline":
+                return new DeadlineCommand(command, tasks);
+            case "event":
+                return new EventsCommand(command, tasks);
+            case "done":
+                return new DoneCommand(command, tasks);
+            case "bye":
+                return new ByeCommand();
+            default:
+                throw new InvalidCommandException("No such command. Please key in again");
         }
-        while (!command.equalsIgnoreCase("bye"));
 
-        new ByeCommand().printBye();
     }
 
     /**

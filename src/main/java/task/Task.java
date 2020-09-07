@@ -9,23 +9,26 @@ public class Task {
 
     /**
      * Constructor for task
+     *
      * @param description
      */
-    public Task(String description){
+    public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
     /**
      * Retrieve task's status icon
+     *
      * @return status icon
      */
-    public String getStatusIcon(){
-        return (isDone? "Y" : "N");
+    public String getStatusIcon() {
+        return (isDone ? "Y" : "N");
     }
 
     /**
      * Retrieve task's description
+     *
      * @return description
      */
     public String getDescription() {
@@ -34,6 +37,7 @@ public class Task {
 
     /**
      * Setting the task's description
+     *
      * @param description
      */
     public void setDescription(String description) {
@@ -43,7 +47,7 @@ public class Task {
     /**
      * Set isDone to true if task is done
      */
-    public void markAsDone(){
+    public void markAsDone() {
         this.isDone = true;
     }
 }
