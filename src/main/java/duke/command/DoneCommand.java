@@ -1,20 +1,20 @@
-package command;
+package duke.command;
 
-import exception.InvalidTaskIndexException;
-import exception.TaskDoneException;
-import task.Task;
+import duke.exception.InvalidTaskIndexException;
+import duke.exception.TaskDoneException;
+import duke.task.Task;
 
 import java.util.ArrayList;
 
 /**
- * Command to mark task as done
+ * Command to mark duke.task as done
  */
 public class DoneCommand extends Command {
     protected String command;
     protected ArrayList<Task> tasks;
 
     /**
-     * Constructor for mark task as done
+     * Constructor for mark duke.task as done
      *
      * @param command
      * @param tasks
@@ -25,7 +25,7 @@ public class DoneCommand extends Command {
     }
 
     /**
-     * User marked the task as done
+     * User marked the duke.task as done
      * @param command
      * @param tasks
      * @throws InvalidTaskIndexException
@@ -40,11 +40,11 @@ public class DoneCommand extends Command {
             throw new InvalidTaskIndexException("The index is not found!");
         }
         if (tasks.get(index - 1).getStatusIcon() == "Y") {
-            throw new TaskDoneException("The task is already marked as done.");
+            throw new TaskDoneException("The duke.task is already marked as done.");
         }
 
         (tasks.get(index - 1)).markAsDone();
-        System.out.println("Nice! I've marked this task as done: ");
+        System.out.println("Nice! I've marked this duke.task as done: ");
         System.out.println(tasks.get(index - 1).toString());
         System.out.println("____________________________________________________________");
     }

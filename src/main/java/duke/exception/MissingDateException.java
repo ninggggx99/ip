@@ -1,17 +1,17 @@
-package exception;
+package duke.exception;
 
 /**
- * Exception when Date and Description of task is not given
+ * Exception that date is missing
  */
-public class MissingDateAndDescriptionException extends DukeException {
+public class MissingDateException extends DukeException {
     private String errorMessage;
 
     /**
-     * Set the error message of exception
+     * Set the error message of duke.exception
      *
      * @param errorMessage
      */
-    public MissingDateAndDescriptionException(String errorMessage) {
+    public MissingDateException(String errorMessage) {
         this.errorMessage = errorMessage;
     }
 

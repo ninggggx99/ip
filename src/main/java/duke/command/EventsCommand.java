@@ -1,15 +1,15 @@
-package command;
+package duke.command;
 
-import exception.MissingDateAndDescriptionException;
-import exception.MissingDateException;
-import exception.MissingDescriptionException;
-import task.Events;
-import task.Task;
+import duke.exception.MissingDateAndDescriptionException;
+import duke.exception.MissingDateException;
+import duke.exception.MissingDescriptionException;
+import duke.task.Events;
+import duke.task.Task;
 
 import java.util.ArrayList;
 
 /**
- * Command to add event task
+ * Command to add event duke.task
  */
 public class EventsCommand extends Command {
     protected String command;
@@ -55,7 +55,7 @@ public class EventsCommand extends Command {
         String eventsDate[] = descDate[1].split(" ", 2);
 
         tasks.add(new Events(descDate[0], eventsDate[1]));
-        System.out.println("Got it. I've added this task: ");
+        System.out.println("Got it. I've added this duke.task: ");
         System.out.println("    " + tasks.get(tasks.size() - 1).toString());
         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
         System.out.println("____________________________________________________________");

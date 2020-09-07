@@ -1,17 +1,17 @@
-package exception;
+package duke.exception;
 
 /**
- * Exception thrown when command invalid
+ * Exception thrown when description missing
  */
-public class InvalidCommandException extends DukeException {
+public class MissingDescriptionException extends DukeException {
     private String errorMessage;
 
     /**
-     * Set the error message of exception
+     * Set the error message of duke.exception
      *
      * @param errorMessage
      */
-    public InvalidCommandException(String errorMessage) {
+    public MissingDescriptionException(String errorMessage) {
         this.errorMessage = errorMessage;
     }
 

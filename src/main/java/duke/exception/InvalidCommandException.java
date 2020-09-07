@@ -1,17 +1,17 @@
-package exception;
+package duke.exception;
 
 /**
- * Exception when task index is not in the list
+ * Exception thrown when duke.command invalid
  */
-public class InvalidTaskIndexException extends DukeException {
+public class InvalidCommandException extends DukeException {
     private String errorMessage;
 
     /**
-     * Set the error message of exception
+     * Set the error message of duke.exception
      *
      * @param errorMessage
      */
-    public InvalidTaskIndexException(String errorMessage) {
+    public InvalidCommandException(String errorMessage) {
         this.errorMessage = errorMessage;
     }
 

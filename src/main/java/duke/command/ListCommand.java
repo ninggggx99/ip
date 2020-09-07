@@ -1,12 +1,12 @@
-package command;
+package duke.command;
 
-import exception.EmptyListException;
-import task.Task;
+import duke.exception.EmptyListException;
+import duke.task.Task;
 
 import java.util.ArrayList;
 
 /**
- * Command to display task
+ * Command to display duke.task
  */
 public class ListCommand extends Command {
 

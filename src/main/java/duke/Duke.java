@@ -1,18 +1,18 @@
-import command.ByeCommand;
-import command.Command;
-import command.DeadlineCommand;
-import command.DoneCommand;
-import command.EventsCommand;
-import command.ListCommand;
-import command.ToDoCommand;
+package duke;
 
-import exception.DukeException;
-import exception.InvalidCommandException;
-import task.Task;
+import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DoneCommand;
+import duke.command.EventsCommand;
+import duke.command.ListCommand;
+import duke.command.ToDoCommand;
+import duke.exception.DukeException;
+import duke.exception.InvalidCommandException;
+import duke.task.Task;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
 
 public class Duke {
     public static void main(String[] args) {
@@ -41,7 +41,7 @@ public class Duke {
     }
 
     /**
-     * check which command to run
+     * check which duke.command to run
      * @param command
      * @param tasks
      * @return Command function
