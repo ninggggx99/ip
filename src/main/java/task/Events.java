@@ -3,11 +3,12 @@ package task;
 /**
  * Class for events
  */
-public class Events extends Task{
+public class Events extends Task {
     public String dateToFrom;
 
     /**
      * Constructor for Events
+     *
      * @param description
      * @param dateToFrom
      */
@@ -18,26 +19,29 @@ public class Events extends Task{
 
     /**
      * Get the range of time for the event
+     *
      * @return event date time range
      */
-    public String getDateToFrom(){
+    public String getDateToFrom() {
         return this.dateToFrom;
     }
 
     /**
      * Set the range of time for the event
+     *
      * @return event date time range
      */
-    public void setDateToFrom(String dateToFrom){
+    public void setDateToFrom(String dateToFrom) {
         this.dateToFrom = dateToFrom;
     }
 
     /**
      * Print deadline task String
-     * @return  print string
+     *
+     * @return print string
      */
     @Override
-    public String toString(){
-        return "[E]["  + super.getStatusIcon() +"]" + " " + super.getDescription() + " (at: " + dateToFrom + ")";
+    public String toString() {
+        return "[E][" + super.getStatusIcon() + "]" + " " + super.getDescription() + " (at: " + dateToFrom + ")";
     }
 }

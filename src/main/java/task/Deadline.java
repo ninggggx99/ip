@@ -8,6 +8,7 @@ public class Deadline extends Task {
 
     /**
      * Constructor for deadline
+     *
      * @param description
      * @param by
      */
@@ -18,26 +19,29 @@ public class Deadline extends Task {
 
     /**
      * Get deadline
+     *
      * @return by (deadline)
      */
-    public String getBy(){
+    public String getBy() {
         return this.by;
     }
 
     /**
      * Set deadline
+     *
      * @param by (deadline)
      */
-    public void setBy(String by){
+    public void setBy(String by) {
         this.by = by;
     }
 
     /**
      * Print deadline task String
-     * @return  print string
+     *
+     * @return print string
      */
     @Override
-    public String toString(){
-        return "[D]["  + super.getStatusIcon() +"]" + " " + super.getDescription() + " (by: " + by + ")";
+    public String toString() {
+        return "[D][" + super.getStatusIcon() + "]" + " " + super.getDescription() + " (by: " + by + ")";
     }
 }
