@@ -3,6 +3,7 @@ package duke;
 import duke.command.ByeCommand;
 import duke.command.Command;
 import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
 import duke.command.DoneCommand;
 import duke.command.EventsCommand;
 import duke.command.ListCommand;
@@ -63,6 +64,8 @@ public class Duke {
                 return new EventsCommand(command, tasks);
             case "done":
                 return new DoneCommand(command, tasks);
+            case "delete":
+                return new DeleteCommand(command,tasks);
             case "bye":
                 return new ByeCommand();
             default:
