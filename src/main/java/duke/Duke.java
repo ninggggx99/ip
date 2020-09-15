@@ -10,16 +10,26 @@ import duke.command.ListCommand;
 import duke.command.ToDoCommand;
 import duke.exception.DukeException;
 import duke.exception.InvalidCommandException;
+import duke.storage.Storage;
 import duke.task.Task;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String command;
-        ArrayList<Task> tasks = new ArrayList<Task>();
+        ArrayList<Task> tasks;
+        Storage storage = new Storage(System.getProperty("user.dir")+"\\data\\output.txt");
+        try {
+            tasks = storage.load();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            tasks = new ArrayList<Task>();
+        }
 
 
         welcomeMessage();
@@ -29,8 +39,8 @@ public class Duke {
 
         while (!isExit) {
             try {
-                Command commandType = runCommand(command, tasks);
-                commandType.run(command, tasks);
+                Command commandType = runCommand(command, tasks,storage);
+                commandType.run(command, tasks, storage);
                 isExit = commandType.isExit();
             } catch (DukeException e) {
                 System.out.println(e);
@@ -45,27 +55,28 @@ public class Duke {
      * check which duke.command to run
      * @param command
      * @param tasks
+     * @param storage 
      * @return Command function
      * @throws InvalidCommandException
      */
-    private static Command runCommand(String command, ArrayList<Task> tasks) throws InvalidCommandException {
+    private static Command runCommand(String command, ArrayList<Task> tasks, Storage storage) throws InvalidCommandException {
 
         String commandSplit[] = command.split(" ", 2);
 
 
         switch (commandSplit[0]) {
             case "list":
-                return new ListCommand(command, tasks);
+                return new ListCommand(command, tasks, storage);
             case "todo":
-                return new ToDoCommand(command, tasks);
+                return new ToDoCommand(command, tasks,storage);
             case "deadline":
-                return new DeadlineCommand(command, tasks);
+                return new DeadlineCommand(command, tasks, storage);
             case "event":
-                return new EventsCommand(command, tasks);
+                return new EventsCommand(command, tasks, storage);
             case "done":
-                return new DoneCommand(command, tasks);
+                return new DoneCommand(command, tasks, storage);
             case "delete":
-                return new DeleteCommand(command,tasks);
+                return new DeleteCommand(command,tasks, storage);
             case "bye":
                 return new ByeCommand();
             default:
