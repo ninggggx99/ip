@@ -3,7 +3,7 @@ package duke.task;
 /**
  * Class for duke.task
  */
-public class Task {
+public abstract class Task {
     protected String description;
     protected boolean isDone;
 
@@ -50,4 +50,7 @@ public class Task {
     public void markAsDone() {
         this.isDone = true;
     }
+
+    @Override
+    public abstract String toString();
 }
