@@ -36,7 +36,7 @@ public class DoneCommand extends Command {
     public void run(String command, ArrayList<Task> tasks) throws InvalidTaskIndexException, TaskDoneException {
 
         int index = Integer.parseInt(command.replaceAll("\\D+", ""));
-        if (index > tasks.size()) {
+        if (index > tasks.size() || index < 0) {
             throw new InvalidTaskIndexException("The index is not found!");
         }
         if (tasks.get(index - 1).getStatusIcon() == "Y") {
