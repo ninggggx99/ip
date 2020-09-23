@@ -123,7 +123,7 @@ public class TaskList {
         System.out.println("Got it. I've added this duke.task: ");
         System.out.println("    " + tasks.get(tasks.size() - 1).toString());
         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
-        System.out.println("____________________________________________________________");;
+        System.out.println("____________________________________________________________");
     }
 
     /**
@@ -137,7 +137,23 @@ public class TaskList {
         System.out.println("Got it. I've added this duke.task: ");
         System.out.println("    " + tasks.get(tasks.size() - 1).toString());
         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
-        System.out.println("____________________________________________________________");;
+        System.out.println("____________________________________________________________");
+    }
+
+    public void find (String keyword){
+        ArrayList<Task> matchingTask = new ArrayList<>();
+        for (int i = 0; i < tasks.size(); i++){
+            String desc = tasks.get(i).getDescription();
+            if (desc.contains(keyword)){
+                matchingTask.add(tasks.get(i));
+            }
+        }
+
+        System.out.println("Here are the matching tasks in your list:");
+        for (int i = 0; i < matchingTask.size(); i++){
+            System.out.println(i+1 + ". " + matchingTask.get(i).toString());
+        }
+        System.out.println("____________________________________________________________");
     }
 
     public String convertingDate (String date){

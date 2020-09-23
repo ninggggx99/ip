@@ -2,10 +2,6 @@ package duke.parser;
 
 import duke.command.*;
 import duke.exception.InvalidCommandException;
-import duke.storage.Storage;
-import duke.task.Task;
-
-import java.util.ArrayList;
 
 public class Parser {
 
@@ -33,6 +29,8 @@ public class Parser {
                 return new DeleteCommand(command);
             case "bye":
                 return new ByeCommand();
+            case "find":
+                return new FindCommand(command);
             default:
                 throw new InvalidCommandException("No such command. Please key in again");
         }
