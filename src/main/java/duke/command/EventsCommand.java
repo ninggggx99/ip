@@ -4,12 +4,9 @@ import duke.exception.MissingDateAndDescriptionException;
 import duke.exception.MissingDateException;
 import duke.exception.MissingDescriptionException;
 import duke.storage.Storage;
-import duke.task.Events;
-import duke.task.Task;
 import duke.tasklist.TaskList;
 import duke.ui.Ui;
 
-import java.util.ArrayList;
 
 /**
  * Command to add event duke.task

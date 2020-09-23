@@ -1,14 +1,34 @@
 package duke.parser;
 
-import duke.command.*;
+import duke.command.ByeCommand;
+import duke.command.Command;
+import duke.command.DeadlineCommand;
+import duke.command.DeleteCommand;
+import duke.command.DoneCommand;
+import duke.command.EventsCommand;
+import duke.command.FindCommand;
+import duke.command.ListCommand;
+import duke.command.ToDoCommand;
 import duke.exception.InvalidCommandException;
 
+/**
+ * Parse commands to the functions
+ */
 public class Parser {
-
-    public Parser(){
+    /**
+     * Contstructor for parser
+     */
+    public Parser() {
 
     }
 
+    /**
+     * Parse the commands
+     *
+     * @param command
+     * @return
+     * @throws InvalidCommandException
+     */
     public static Command parse(String command) throws InvalidCommandException {
 
         String commandSplit[] = command.split(" ", 2);

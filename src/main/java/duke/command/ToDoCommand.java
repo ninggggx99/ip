@@ -2,12 +2,9 @@ package duke.command;
 
 import duke.exception.MissingDescriptionException;
 import duke.storage.Storage;
-import duke.task.Task;
-import duke.task.Todo;
 import duke.tasklist.TaskList;
 import duke.ui.Ui;
 
-import java.util.ArrayList;
 
 /**
  * Command to add todo duke.task

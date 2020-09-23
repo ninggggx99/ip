@@ -7,7 +7,6 @@ import duke.storage.Storage;
 import duke.tasklist.TaskList;
 import duke.ui.Ui;
 
-import java.util.ArrayList;
 
 /**
  * Command to add deadline duke.task
@@ -26,6 +25,7 @@ public class DeadlineCommand extends Command {
 
     /**
      * Add a duke.task with deadline for user
+     *
      * @param tasks
      * @param ui
      * @param storage

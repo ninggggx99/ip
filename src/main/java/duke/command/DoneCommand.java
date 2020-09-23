@@ -4,11 +4,8 @@ import duke.exception.InvalidTaskIndexException;
 import duke.exception.MissingIndexException;
 import duke.exception.TaskDoneException;
 import duke.storage.Storage;
-import duke.task.Task;
 import duke.tasklist.TaskList;
 import duke.ui.Ui;
-
-import java.util.ArrayList;
 
 /**
  * Command to mark duke.task as done
@@ -39,7 +36,6 @@ public class DoneCommand extends Command {
             throw new MissingIndexException("No index given");
         }
         int index = Integer.parseInt(command.replaceAll("\\D+", ""));
-        System.out.println("Index "+ index);
         if (tasks.getTask(index).getStatusIcon()== "Y") {
             throw new TaskDoneException("The duke.task is already marked as done.");
         }
