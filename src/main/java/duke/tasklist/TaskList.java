@@ -9,6 +9,10 @@ import duke.task.Events;
 import duke.task.Task;
 import duke.task.Todo;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public class TaskList {
@@ -114,8 +118,8 @@ public class TaskList {
      * @param deadlineDate
      */
     public void addDeadline (String description, String deadlineDate){
-
-        tasks.add(new Deadline(description, deadlineDate));
+        String date = convertingDate(deadlineDate);
+        tasks.add(new Deadline(description, date));
         System.out.println("Got it. I've added this duke.task: ");
         System.out.println("    " + tasks.get(tasks.size() - 1).toString());
         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
@@ -128,16 +132,21 @@ public class TaskList {
      * @param eventsDate
      */
     public void addEvent (String description, String eventsDate){
-
-        tasks.add(new Events(description, eventsDate));
-//        storage.save(tasks);
+        String date = convertingDate(eventsDate);
+        tasks.add(new Events(description, date));
         System.out.println("Got it. I've added this duke.task: ");
         System.out.println("    " + tasks.get(tasks.size() - 1).toString());
         System.out.println("Now you have " + tasks.size() + " tasks in the list.");
         System.out.println("____________________________________________________________");;
     }
 
-
+    public String convertingDate (String date){
+        String dateSplit []= date.split(" ");
+        String formatDate = dateSplit[0].replace('/', '-');
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("d-MM-yyyy");
+        LocalDate dateFormatted = LocalDate.parse(formatDate,df);
+        return dateFormatted.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+    }
 
 
 }
