@@ -2,6 +2,8 @@ package duke.command;
 
 import duke.storage.Storage;
 import duke.task.Task;
+import duke.tasklist.TaskList;
+import duke.ui.Ui;
 
 import java.util.ArrayList;
 
@@ -20,9 +22,7 @@ public class ByeCommand extends Command {
      * Print goodbye string
      */
     @Override
-    public void run(String command, ArrayList<Task> tasks, Storage storage) {
-        System.out.println("____________________________________________________________");
-        System.out.println("Bye. Hope to see you again soon!");
-        System.out.println("____________________________________________________________");
+    public void run(TaskList tasks, Ui ui, Storage storage)  {
+        ui.byeMessage();
     }
 }

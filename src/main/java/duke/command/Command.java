@@ -3,6 +3,8 @@ package duke.command;
 import duke.exception.DukeException;
 import duke.storage.Storage;
 import duke.task.Task;
+import duke.tasklist.TaskList;
+import duke.ui.Ui;
 
 import java.util.ArrayList;
 
@@ -13,7 +15,7 @@ public abstract class Command {
     protected boolean isExit;
     protected String command;
 
-    abstract public void run(String command, ArrayList<Task> tasks, Storage storage) throws DukeException;
+    abstract public void run(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 
     /**
      * Signal exit program

@@ -1,104 +1,53 @@
 package duke;
 
-import duke.command.ByeCommand;
 import duke.command.Command;
-import duke.command.DeadlineCommand;
-import duke.command.DeleteCommand;
-import duke.command.DoneCommand;
-import duke.command.EventsCommand;
-import duke.command.ListCommand;
-import duke.command.ToDoCommand;
 import duke.exception.DukeException;
-import duke.exception.InvalidCommandException;
+import duke.parser.Parser;
 import duke.storage.Storage;
-import duke.task.Task;
+import duke.tasklist.TaskList;
+import duke.ui.Ui;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Scanner;
+
 
 public class Duke {
+    private Storage storage;
+    private TaskList tasks;
+    private Ui ui;
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String command;
-        ArrayList<Task> tasks;
-        Storage storage = new Storage(System.getProperty("user.dir")+"\\data\\output.txt");
+    public Duke(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
         try {
-            tasks = storage.load();
+            tasks = new TaskList(storage.load());
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            tasks = new ArrayList<Task>();
+            ui.showLoadingError();
+            tasks = new TaskList();
         }
-
-
-        welcomeMessage();
-
-        command = sc.nextLine();
+    }
+    public void run(){
+        ui.welcomeMessage();
         boolean isExit = false;
-
         while (!isExit) {
             try {
-                Command commandType = runCommand(command, tasks,storage);
-                commandType.run(command, tasks, storage);
-                isExit = commandType.isExit();
+                String fullCommand = ui.readCommand();
+                ui.showLine(); // show the divider line ("_______")
+                Command c = Parser.parse(fullCommand);
+                c.run(tasks, ui, storage);
+                isExit = c.isExit();
             } catch (DukeException e) {
-                System.out.println(e);
-            }
-            if (isExit == false) {
-                command = sc.nextLine();
+                ui.showError(e.toString());
+            } finally {
+                ui.showLine();
             }
         }
     }
-
-    /**
-     * check which duke.command to run
-     * @param command
-     * @param tasks
-     * @param storage 
-     * @return Command function
-     * @throws InvalidCommandException
-     */
-    private static Command runCommand(String command, ArrayList<Task> tasks, Storage storage) throws InvalidCommandException {
-
-        String commandSplit[] = command.split(" ", 2);
-
-
-        switch (commandSplit[0]) {
-            case "list":
-                return new ListCommand(command, tasks, storage);
-            case "todo":
-                return new ToDoCommand(command, tasks,storage);
-            case "deadline":
-                return new DeadlineCommand(command, tasks, storage);
-            case "event":
-                return new EventsCommand(command, tasks, storage);
-            case "done":
-                return new DoneCommand(command, tasks, storage);
-            case "delete":
-                return new DeleteCommand(command,tasks, storage);
-            case "bye":
-                return new ByeCommand();
-            default:
-                throw new InvalidCommandException("No such command. Please key in again");
-        }
-
+    public static void main(String[] args) {
+        new Duke("data/tasks.txt").run();
     }
 
-    /**
-     * Welcome Message
-     */
-    private static void welcomeMessage() {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
-        System.out.println("____________________________________________________________");
-        System.out.println("Hello! I'm Duke ");
-        System.out.println("What can I do for you?");
-        System.out.println("____________________________________________________________");
-    }
+
+
+
 
 }

@@ -5,6 +5,8 @@ import duke.exception.MissingIndexException;
 import duke.exception.TaskDoneException;
 import duke.storage.Storage;
 import duke.task.Task;
+import duke.tasklist.TaskList;
+import duke.ui.Ui;
 
 import java.util.ArrayList;
 
@@ -12,51 +14,37 @@ import java.util.ArrayList;
  * Command to mark duke.task as done
  */
 public class DoneCommand extends Command {
-    protected String command;
-    protected ArrayList<Task> tasks;
-    protected Storage storage;
-
     /**
      * Constructor for mark duke.task as done
      *
      * @param command
-     * @param tasks
-     * @param storage
      */
-    public DoneCommand(String command, ArrayList<Task> tasks, Storage storage) {
+    public DoneCommand(String command) {
         this.command = command;
-        this.tasks = tasks;
-        this.storage = storage;
     }
 
     /**
      * User marked the duke.task as done
-     * @param command
      * @param tasks
+     * @param ui
      * @param storage
      * @throws InvalidTaskIndexException
      * @throws TaskDoneException
      */
 
     @Override
-    public void run(String command, ArrayList<Task> tasks, Storage storage) throws InvalidTaskIndexException, TaskDoneException, MissingIndexException {
+    public void run(TaskList tasks, Ui ui, Storage storage) throws InvalidTaskIndexException, TaskDoneException, MissingIndexException {
         String commandSplit[] = command.split(" ", 2);
         if (commandSplit.length == 1 || commandSplit[1] == " "){
             throw new MissingIndexException("No index given");
         }
         int index = Integer.parseInt(command.replaceAll("\\D+", ""));
-
-        if (index > tasks.size() || index < 0) {
-            throw new InvalidTaskIndexException("The index is not found!");
-        }
-        if (tasks.get(index - 1).getStatusIcon() == "Y") {
+        System.out.println("Index "+ index);
+        if (tasks.getTask(index).getStatusIcon()== "Y") {
             throw new TaskDoneException("The duke.task is already marked as done.");
         }
 
-        (tasks.get(index - 1)).markAsDone();
+        tasks.setTaskDone(index);
         storage.save(tasks);
-        System.out.println("Nice! I've marked this duke.task as done: ");
-        System.out.println(tasks.get(index - 1).toString());
-        System.out.println("____________________________________________________________");
     }
 }
