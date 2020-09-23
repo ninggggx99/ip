@@ -1,7 +1,7 @@
 package duke.exception;
 
 /**
- * Exception thrown when description missing
+ * Exception thrown when keyword missing
  */
 public class MissingFindDescException extends DukeException {
     private String errorMessage;

@@ -2,11 +2,9 @@ package duke.command;
 
 import duke.exception.DukeException;
 import duke.storage.Storage;
-import duke.task.Task;
 import duke.tasklist.TaskList;
 import duke.ui.Ui;
 
-import java.util.ArrayList;
 
 /**
  * Abstract class for commands

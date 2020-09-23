@@ -1,8 +1,5 @@
 package duke.command;
 
-import duke.exception.MissingDateAndDescriptionException;
-import duke.exception.MissingDateException;
-import duke.exception.MissingDescriptionException;
 import duke.exception.MissingFindDescException;
 import duke.storage.Storage;
 import duke.tasklist.TaskList;
