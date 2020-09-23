@@ -4,8 +4,6 @@ import duke.exception.MissingDateAndDescriptionException;
 import duke.exception.MissingDateException;
 import duke.exception.MissingDescriptionException;
 import duke.storage.Storage;
-import duke.task.Deadline;
-import duke.task.Task;
 import duke.tasklist.TaskList;
 import duke.ui.Ui;
 
