@@ -1,7 +1,49 @@
-# Duke project template
+# Duke 
+Duke is an easy-to-use Command Line Interface (CLI) program that acts like a planner for the users.
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+## What is Duke?
+Duke is a Command Line Interface (CLI) planner that allows user to do the functions mention below:
+1. Add task
+1. List tasks
+1. Delete task
+1. Mark task as done
+1. Find matching task
+    
+Tasks have 3 main category, namely Todo, Event and Deadline
 
+Duke commands are simple. You can use Duke on any computers if JDK 11 is installed.
+
+## Syntax Guide
+Here's an overview of the syntax of each function
+
+### Add Task
+Todo does not require any date input<br />
+Event and Deadline require a date input in the format of DD/MM/YYYY HHMM
+```
+todo TASK_NAME
+event TASK_NAME /at TASK_DATE
+deadline TASK_NAME /by TASK_DATE
+```
+### List Tasks
+List all tasks
+```
+list
+```
+### Delete Tasks
+Delete task of specified index
+```
+delete TASK_INDEX
+```
+### Mark Task as Done
+Mark task as done for specified index
+```
+done TASK_INDEX
+```
+### Find Task
+Find any task with matching keyword
+```
+find KEYWORD
+```
 ## Setting up in Intellij
 
 Prerequisites: JDK 11, update Intellij to the most recent version.
@@ -24,3 +66,4 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
    | |_| | |_| |   <  __/
    |____/ \__,_|_|\_\___|
    ```
+
