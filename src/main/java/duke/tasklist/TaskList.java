@@ -66,19 +66,22 @@ public class TaskList {
      * @throws TaskDoneException
      */
     public void setTaskDone(int index) throws InvalidTaskIndexException, TaskDoneException {
-        Task task = tasks.get(index - 1);
 
         if (index > tasks.size() || index < 0) {
             throw new InvalidTaskIndexException("The index is not found!");
         }
-        if (task.getStatusIcon() == "Y") {
-            throw new TaskDoneException("The duke.task is already marked as done.");
+        else{
+            Task task = tasks.get(index - 1);
+            if (task.getStatusIcon() == "Y") {
+                throw new TaskDoneException("The duke.task is already marked as done.");
+            }
+
+            task.markAsDone();
+            System.out.println("Nice! I've marked this duke.task as done: ");
+            System.out.println(tasks.get(index - 1).toString());
+            System.out.println("____________________________________________________________");
         }
 
-        task.markAsDone();
-        System.out.println("Nice! I've marked this duke.task as done: ");
-        System.out.println(tasks.get(index - 1).toString());
-        System.out.println("____________________________________________________________");
     }
 
     /**
@@ -88,12 +91,12 @@ public class TaskList {
      * @throws InvalidTaskIndexException
      */
     public void deleteTask(int index) throws InvalidTaskIndexException {
-        Task task = tasks.get(index - 1);
+
 
         if (index > tasks.size() || index < 0) {
             throw new InvalidTaskIndexException("The index is not found!");
         }
-        System.out.println("index: " + index);
+        Task task = tasks.get(index - 1);
         System.out.println("Noted. I've removed this task: ");
         System.out.println(task.toString());
         tasks.remove(index - 1);

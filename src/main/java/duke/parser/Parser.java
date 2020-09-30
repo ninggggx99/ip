@@ -30,7 +30,7 @@ public class Parser {
      * @throws InvalidCommandException
      */
     public static Command parse(String command) throws InvalidCommandException {
-
+        command = command.trim();
         String commandSplit[] = command.split(" ", 2);
 
 

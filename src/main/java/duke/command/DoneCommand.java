@@ -32,14 +32,11 @@ public class DoneCommand extends Command {
     @Override
     public void run(TaskList tasks, Ui ui, Storage storage) throws InvalidTaskIndexException, TaskDoneException, MissingIndexException {
         String commandSplit[] = command.split(" ", 2);
+
         if (commandSplit.length == 1 || commandSplit[1] == " "){
             throw new MissingIndexException("No index given");
         }
         int index = Integer.parseInt(command.replaceAll("\\D+", ""));
-        if (tasks.getTask(index).getStatusIcon()== "Y") {
-            throw new TaskDoneException("The duke.task is already marked as done.");
-        }
-
         tasks.setTaskDone(index);
         storage.save(tasks);
     }
