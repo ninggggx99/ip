@@ -80,6 +80,7 @@ Exit the program
 bye 
 ```
  ## Summary of Commands
+ 
 Feature|Command format
 ---|---
 Add Todo task| `todo TASK_NAME`
