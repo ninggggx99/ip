@@ -13,37 +13,6 @@ Tasks have 3 main category, namely Todo, Event and Deadline
 
 Duke commands are simple. You can use Duke on any computers if JDK 11 is installed.
 
-## Syntax Guide
-Here's an overview of the syntax of each function
-
-### Add Task
-Todo does not require any date input<br />
-Event and Deadline require a date input in the format of DD/MM/YYYY HHMM
-```
-todo TASK_NAME
-event TASK_NAME /at TASK_DATE
-deadline TASK_NAME /by TASK_DATE
-```
-### List Tasks
-List all tasks
-```
-list
-```
-### Delete Tasks
-Delete task of specified index
-```
-delete TASK_INDEX
-```
-### Mark Task as Done
-Mark task as done for specified index
-```
-done TASK_INDEX
-```
-### Find Task
-Find any task with matching keyword
-```
-find KEYWORD
-```
 ## Setting up in Intellij
 
 Prerequisites: JDK 11, update Intellij to the most recent version.
@@ -66,4 +35,59 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
    | |_| | |_| |   <  __/
    |____/ \__,_|_|\_\___|
    ```
+   
+## Syntax Guide
+Here's an overview of the syntax of each function
+
+### Add Task
+Todo does not require any date input<br />
+Event and Deadline require a date input in the format of DD/MM/YYYY HHMM
+```
+todo TASK_NAME
+event TASK_NAME /at TASK_DATE
+deadline TASK_NAME /by TASK_DATE
+```
+
+Example: `todo sleep` , `event CS2113T meeeting /at 01/01/2020 1122`, `deadline CS2113T quiz /by 01/01/2020 1122`
+### List Tasks
+List all tasks
+```
+list
+```
+### Delete Tasks
+Delete task of specified index
+```
+delete TASK_INDEX
+```
+Example: `delete 2`  -- delete 2nd task from list
+### Mark Task as Done
+Mark task as done for specified index
+```
+done TASK_INDEX
+```
+Example: `done 2`  -- mark task as done
+
+### Find Task
+Find any task with matching keyword
+```
+find KEYWORD
+```
+Example: `find CS2113T` -- show any task containing "CS2113T"
+
+### Exit Duke
+Exit the program
+```
+bye 
+```
+ ## Summary of Commands
+Feature|Command format
+---|---
+Add Todo task| `todo TASK_NAME`
+Add Deadline task| `deadline TASK_NAME /by TASK_DATE`
+Add Event task| `event TASK_NAME /at TASK_DATE`
+List all tasks| `list`
+Mark a task as done| `done TASK_INDEX`
+Delete a task| `delete TASK_INDEX`
+Find tasks| `find KEYWORD`
+Exit program| `bye`
 
