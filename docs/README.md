@@ -79,7 +79,7 @@ Exit the program
 ```
 bye 
 ```
- ## Summary of Commands
+## Summary of Commands
  
 Feature|Command format
 ---|---
