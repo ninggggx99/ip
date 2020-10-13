@@ -41,11 +41,9 @@ public class EventsCommand extends Command {
             throw new MissingDateAndDescriptionException("The date and description of an event cannot be empty");
         }
 
-        String descDate[] = commandSplit[1].split(" /");
-        if (descDate[0].isEmpty() || descDate[0].contains("at")) {
-            throw new MissingDescriptionException("The description of an event cannot be empty");
-        } else if (descDate.length < 2) {
-            throw new MissingDateException("The date of an event cannot be empty");
+        String descDate[] = commandSplit[1].split(" /at");
+        if (descDate.length < 2) {
+            throw new MissingDateException("The description/date of an event cannot be empty");
         }
 
         String eventsDate[] = descDate[1].split(" ", 2);

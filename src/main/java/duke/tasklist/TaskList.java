@@ -8,8 +8,10 @@ import duke.task.Events;
 import duke.task.Task;
 import duke.task.Todo;
 
+import java.awt.desktop.SystemSleepEvent;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class TaskList {
@@ -67,7 +69,7 @@ public class TaskList {
      */
     public void setTaskDone(int index) throws InvalidTaskIndexException, TaskDoneException {
 
-        if (index > tasks.size() || index < 0) {
+        if (index > tasks.size() || index <= 0) {
             throw new InvalidTaskIndexException("The index is not found!");
         }
         else{
@@ -93,7 +95,7 @@ public class TaskList {
     public void deleteTask(int index) throws InvalidTaskIndexException {
 
 
-        if (index > tasks.size() || index < 0) {
+        if (index > tasks.size() || index <= 0) {
             throw new InvalidTaskIndexException("The index is not found!");
         }
         Task task = tasks.get(index - 1);
@@ -126,11 +128,14 @@ public class TaskList {
      */
     public void addDeadline(String description, String deadlineDate) {
         String date = convertingDate(deadlineDate);
-        tasks.add(new Deadline(description, date));
-        System.out.println("Got it. I've added this duke.task: ");
-        System.out.println("    " + tasks.get(tasks.size() - 1).toString());
-        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
-        System.out.println("____________________________________________________________");
+        if (date != null){
+            tasks.add(new Deadline(description, date));
+            System.out.println("Got it. I've added this duke.task: ");
+            System.out.println("    " + tasks.get(tasks.size() - 1).toString());
+            System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+            System.out.println("____________________________________________________________");
+        }
+
     }
 
     /**
@@ -141,11 +146,13 @@ public class TaskList {
      */
     public void addEvent(String description, String eventsDate) {
         String date = convertingDate(eventsDate);
-        tasks.add(new Events(description, date));
-        System.out.println("Got it. I've added this duke.task: ");
-        System.out.println("    " + tasks.get(tasks.size() - 1).toString());
-        System.out.println("Now you have " + tasks.size() + " tasks in the list.");
-        System.out.println("____________________________________________________________");
+        if (date != null){
+            tasks.add(new Events(description, date));
+            System.out.println("Got it. I've added this duke.task: ");
+            System.out.println("    " + tasks.get(tasks.size() - 1).toString());
+            System.out.println("Now you have " + tasks.size() + " tasks in the list.");
+            System.out.println("____________________________________________________________");
+        }
     }
 
     /**
@@ -179,8 +186,14 @@ public class TaskList {
         String dateSplit[] = date.split(" ");
         String formatDate = dateSplit[0].replace('/', '-');
         DateTimeFormatter df = DateTimeFormatter.ofPattern("d-MM-yyyy");
-        LocalDate dateFormatted = LocalDate.parse(formatDate, df);
-        return dateFormatted.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        try{
+            LocalDate dateFormatted = LocalDate.parse(formatDate, df);
+            return dateFormatted.format(DateTimeFormatter.ofPattern("MMM d yyyy"));
+        }catch(DateTimeParseException e){
+            System.out.println("Date is invalid");
+        }
+
+        return null;
     }
 
 

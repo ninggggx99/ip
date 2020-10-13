@@ -36,7 +36,7 @@ public class DoneCommand extends Command {
         if (commandSplit.length == 1 || commandSplit[1] == " "){
             throw new MissingIndexException("No index given");
         }
-        int index = Integer.parseInt(command.replaceAll("\\D+", ""));
+        int index = Integer.parseInt(commandSplit[1]);
         tasks.setTaskDone(index);
         storage.save(tasks);
     }

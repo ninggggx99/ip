@@ -39,14 +39,12 @@ public class DeadlineCommand extends Command {
         String commandSplit[] = command.split(" ", 2);
 
         if (commandSplit.length < 2) {
-            throw new MissingDateAndDescriptionException("The date and description of an event cannot be empty");
+            throw new MissingDateAndDescriptionException("The date and description of a deadline cannot be empty");
         }
-        String descDate[] = commandSplit[1].split(" /");
+        String descDate[] = commandSplit[1].split(" /by");
 
-        if (descDate[0].isEmpty() || descDate[0].contains("by")) {
-            throw new MissingDescriptionException("The description of a deadline cannot be empty");
-        } else if (descDate.length < 2) {
-            throw new MissingDateException("The date of an event cannot be empty");
+        if (descDate.length < 2) {
+            throw new MissingDateException("The date/description of a deadline cannot be empty");
         }
 
         String deadlineDate[] = descDate[1].split(" ", 2);
